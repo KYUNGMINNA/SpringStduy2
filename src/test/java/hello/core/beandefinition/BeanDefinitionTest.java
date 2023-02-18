@@ -1,7 +1,9 @@
-package hello.core;
+package hello.core.beandefinition;
 
+import hello.core.discount.DiscountPolicy;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.BeanDefinition;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.GenericXmlApplicationContext;
@@ -21,6 +23,12 @@ public class BeanDefinitionTest {
             }
         }
     }
+
+//    @Autowired
+//    private DiscountPolicy discountPolicy;  --> fix,rate 두 개의 빈이 발견되어 오류
+    @Autowired // 1. 타입으로 매칭을 시도하고 매칭결과가 2개 이상인경우 2.빈이름으로 매칭을 시도
+    private DiscountPolicy rateDiscountPolicy;
+
 
 
 }

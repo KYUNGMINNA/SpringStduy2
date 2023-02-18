@@ -1,4 +1,4 @@
-package hello.core;
+package hello.core.xml;
 
 import hello.core.member.MemberService;
 import hello.core.member.MemberServiceImpl;
