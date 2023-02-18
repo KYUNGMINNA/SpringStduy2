@@ -6,7 +6,11 @@ import hello.core.discount.RateDiscountPolicy;
 import hello.core.member.Member;
 import hello.core.member.MemberRepository;
 import hello.core.member.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
 
+@Component
 public class OrderServiceImpl implements OrderService{
     //구현 객체에 의존적인 코드
     //private final MemberRepository memberRepository = new MemoryMemberRepository();
@@ -26,11 +30,16 @@ public class OrderServiceImpl implements OrderService{
 
     //OCP와 DIP를 위반하지 않으려면  인터페이스에만 의존하도록 해야 하는데
     //구현체가 없어 코드를 실행 할 수 없어서 NPE 발생
+
+    @Qualifier("myDiscountPolicy") // 등록 된 이름을 통해서 의존관계 주입할 때 매칭
     private DiscountPolicy discountPolicy;                              // 3.
     //-->누군가가 DiscountPolicy의 구현 객체를 대신 생성하고 ,주입해 줘야 한다.
 
     //성자를 통해서 어떤 구현 객체을 주입할지는 오직 외부(AppConfig)에서 결정
     //OrderServiceImpl은 실행에만 집중한다.
+
+    @Autowired //생성자 딱 1개 있을시 생략해도 된다.
+    //required 옵션 default 가 True라서 자동주입 대상 없으면 오류 발생 
     public OrderServiceImpl(MemberRepository memberRepository, DiscountPolicy discountPolicy) {
         this.memberRepository = memberRepository;
         this.discountPolicy = discountPolicy;

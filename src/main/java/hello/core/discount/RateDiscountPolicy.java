@@ -3,9 +3,13 @@ package hello.core.discount;
 import hello.core.member.Grade;
 import hello.core.member.Member;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 @Component
+//@Primary //autowired 빈 매칭될 때 이 어노테이션 갖고 있는 빈이 우선 순위 !
+
+@MainDiscountPolicy //직접 만든 어노테이션
 public class RateDiscountPolicy implements DiscountPolicy{
 
     private int discountPercent = 10;
