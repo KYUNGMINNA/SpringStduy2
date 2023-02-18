@@ -15,6 +15,12 @@ import java.util.UUID;
 
 /**  스코프와 프록시 v2 */
 @Scope(value = "request", proxyMode = ScopedProxyMode.TARGET_CLASS)
+
+/**
+ * @Scope의 proxyMode = ScopedProxyMode.TARGET_CLASS를 설정하면 스프링 컨테이너는
+ * CGLIB이라는 바이트 코드 조작 라이브러리로 MyLogger를 상속 받은 가짜 프록시 객체를 생성한다.
+ * ac.Bean("myLoger", MyLogger.class)로 찍어봐도 프록시 객체가 조회된다.
+ */
 public class MyLogger {
     private String uuid;
     private String requestURL;
