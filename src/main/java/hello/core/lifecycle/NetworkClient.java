@@ -74,13 +74,15 @@ public class NetworkClient{
 /**
  * 3. 빈 생명주기 콜백 - 애너테이션 방식
  * */
-@PostConstruct
+@PostConstruct // 스프링 빈 등록시 초기화 메서드로 지정
+// 클래스 자체의 생성자 동작 ->의존 관계주입 -> 이후 호출되는 메서드
 public void init() throws Exception {
     connect();
     call("초기화 연결 메시지");
 }
 
-    @PreDestroy
+    @PreDestroy //소멸 메서드로 지정
+    //스프링 컨테이너 종료 직전에 호출되는 메서드
     public void close() throws Exception {
         disconnect();
     }

@@ -24,6 +24,15 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter'
 
+	//JSR-330 Provider : ObjectFactory, ObjectProvider들은 스프링에 의존적임
+	// 자바 표준 라이브러리를 사용해서 의존적이지 않게 함
+	implementation 'javax.inject:javax.inject:1'
+
+	
+	//web 라이브러리 추가 : 웹 환경에서 동작하는 스코프로 스프링이 해당 스코프의 종료시점까지 관리
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+
+
 	//lombok 라이브러리 추가 시작
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
